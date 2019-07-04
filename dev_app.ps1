@@ -24,6 +24,13 @@ function executeScript {
 #--- Installing required software ---
 executeScript "requiredsoftware.ps1";
 
+#--- Configuring Windows properties ---
+#--- Windows Features ---
+# Show hidden files, Show protected OS files, Show file extensions
+executeScript "FileExplorerSettings.ps1";
+
+executeScript "RemoveDefaultApps.ps1";
+
 #--- reenabling critial items ---
 Enable-UAC
 Enable-MicrosoftUpdate
