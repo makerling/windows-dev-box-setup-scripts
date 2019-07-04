@@ -37,17 +37,20 @@ $cmp2ID = "Microsoft.VisualStudio.Component.Windows81SDK"
 
 #https://stackoverflow.com/questions/2608144/how-to-split-long-commands-over-multiple-lines-in-powershell
 {& $vsStudioInstaller @Args} | % Invoke @(
-  'modify'
-  '/NoRestart'
-  '/LOG %SYSTEMROOT%\TEMP\VS_2017_install.log'
+  '--add'
+  $wkload1ID
+  '--add'
+  $wkload2ID
+  '--add'
+  $wkload3ID
+  '--add'
+  $wkload4ID
+  '--add'
+  $wkload5ID
+  '--add'
+  $cmp1ID
+  '--add'
+  $cmp2ID
   '--passive'
-  '--includeRecommended'
-  '--path install=$vsStudioInstallLocation'
-  '--add ${wkload1ID}'
-  '--add ${wkload2ID}'
-  '--add ${wkload3ID}'
-  '--add ${wkload4ID}'
-  '--add ${wkload5ID}'
-  '--add ${cmp1ID}'
-  '--add ${cmp2ID}'
+  '--norestart'
 )
