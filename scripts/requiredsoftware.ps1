@@ -8,7 +8,8 @@ cinst visualstudio2017community -y
 
 #installing workloads/components for building FLEx9
 #default vsinstaller location vs 2017
-$vsStudioInstallInstaller = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"
+$vsStudioInstaller = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"
+$vsStudioInstallLocation = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community"
 
 #workload/component IDs 
 #from here: https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?vs-2017&view=vs-2017
@@ -35,9 +36,13 @@ $cmp1ID = "Microsoft.Component.VC.Runtime.UCRTSDK"
 $cmp2ID = "Microsoft.VisualStudio.Component.Windows81SDK"
 
 #https://stackoverflow.com/questions/2608144/how-to-split-long-commands-over-multiple-lines-in-powershell
-{& $vsStudioInstallInstaller @Args} | % Invoke @(
+{& $vsStudioInstaller @Args} | % Invoke @(
+  'modify'
+  '/NoRestart'
+  '/LOG %SYSTEMROOT%\TEMP\VS_2017_install.log'
   '--passive'
   '--includeRecommended'
+  '--path install=$vsStudioInstallLocation'
   '--add ${wkload1ID}'
   '--add ${wkload2ID}'
   '--add ${wkload3ID}'
