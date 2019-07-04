@@ -21,10 +21,8 @@ function executeScript {
 	iex ((new-object net.webclient).DownloadString("$helperUri/$script"))
 }
 
-#--- Configuring Windows properties ---
-#--- Windows Features ---
-# Show hidden files, Show protected OS files, Show file extensions
-Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+#--- Installing required software ---
+executeScript "requiredsoftware.ps1";
 
 #--- reenabling critial items ---
 Enable-UAC
